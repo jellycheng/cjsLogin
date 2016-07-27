@@ -112,6 +112,20 @@ class AlipaySubmit {
 		
 		return $sHtml;
 	}
+
+	function getBuildRequestForm($para_temp, $method, $button_name='') {
+		//待请求参数数组
+		$para = $this->buildRequestPara($para_temp);
+		
+        $payUrl = $this->alipay_gateway_new."_input_charset=".trim(strtolower($this->alipay_config['input_charset']));
+        $res = array(
+        		'formData'=>$para,
+        		'payUrl'=>$payUrl,
+
+        	);
+		
+		return $res;
+	}
 	
 	
 	/**
