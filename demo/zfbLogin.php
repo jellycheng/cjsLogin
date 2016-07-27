@@ -32,6 +32,11 @@ $parameter = array(
 );
 
 //建立请求
-$alipaySubmit = new \CjsLogin\Zfb\AlipaySubmit($alipay_config);
+$alipaySubmit = new \CjsLogin\Zfb\AlipaySubmit($zfbConfig);
+#方式1 通过js跳转
 $html_text = $alipaySubmit->buildRequestForm($parameter,"get", "确认登录");
 echo $html_text;
+exit;
+#方式2 获取内容，自己来组装
+$resData = $alipaySubmit->getBuildRequestForm($parameter,"get");
+var_export($resData);
