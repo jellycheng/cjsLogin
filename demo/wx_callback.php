@@ -7,8 +7,6 @@
  */
 require __DIR__ . '/../vendor/autoload.php';
 $wxConfig = include __DIR__ . '/config/WxH5.php';
-
-
-$wxObj = \CjsLogin\Weixin\WxWeb::create()->setWxConfig($wxConfig);
-$wxData = $wxObj->getWebAccessToken();
-
+$wxLoginObj = \CjsLogin\Weixin\WxWeb::create()->setWxConfig($wxConfig);
+$tokenData = $wxLoginObj->getWebAccessToken();
+var_export($tokenData);

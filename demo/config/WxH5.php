@@ -17,4 +17,5 @@ return [
 //    'access_token_ini'=>[//传给访问令牌保存的参数
 //        'filename'=>__DIR__ . '/access_token.json'
 //    ],
+    'login_callback_url'=>'http://domain/login/wxcallback', //微信登录回调地址
 ];

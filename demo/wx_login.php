@@ -7,8 +7,7 @@
  */
 require __DIR__ . '/../vendor/autoload.php';
 $wxConfig = include __DIR__ . '/config/WxH5.php';
-
-$redirectUrl = 'http://xxx.com/wx_callback.php';
+$redirectUrl = $wxConfig['login_callback_url'];
 $url = \CjsLogin\Weixin\WxWeb::create()->setWxConfig($wxConfig)->getOauth2Url($redirectUrl, 'snsapi_userinfo');
 header("Location: " . $url);
 
