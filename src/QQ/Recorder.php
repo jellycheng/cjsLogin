@@ -8,33 +8,42 @@ namespace CjsLogin\QQ;
 
 
 class Recorder{
+
     private static $data;
-    private $inc;
-    private $error;
+    private $inc = [];
 
-    public function __construct(){
-        $this->error = new ErrorCase();
-
-        //-------读取配置文件
-        //$incFileContents = file_get_contents(ROOT."comm/inc.php");
-        $this->inc = include __DIR__ . '/Config/Qq.php';
-        if(empty($this->inc)){
-            $this->error->showError("20001");
-        }
-
-        if(empty($_SESSION['QC_userData'])){
-            self::$data = array();
-        }else{
-            self::$data = $_SESSION['QC_userData'];
-        }
+    public static function create() {
+       return new static();
     }
 
-    public function write($name,$value){
-        self::$data[$name] = $value;
+    public function setInc($config) {
+        if(!is_array($config)) {
+            return $this;
+        }
+        $this->inc = array_merge($this->inc, $config);
+        return $this;
+    }
+
+    public function __construct(){
+
+//        if(empty($_SESSION['QC_userData'])){
+//            self::$data = array();
+//        }else{
+//            self::$data = $_SESSION['QC_userData'];
+//        }
+    }
+
+    public function write($name,$value=null){
+        if(is_array($name)) {
+            self::$data = $name;
+        } else if($name) {
+            self::$data[$name] = $value;
+        }
+        return $this;
     }
 
     public function read($name){
-        if(empty(self::$data[$name])){
+        if(!isset(self::$data[$name])){
             return null;
         }else{
             return self::$data[$name];
@@ -42,10 +51,10 @@ class Recorder{
     }
 
     public function readInc($name){
-        if(empty($this->inc->$name)){
+        if(!isset($this->inc[$name])){
             return null;
         }else{
-            return $this->inc->$name;
+            return $this->inc[$name];
         }
     }
 
@@ -54,6 +63,6 @@ class Recorder{
     }
 
     function __destruct(){
-        $_SESSION['QC_userData'] = self::$data;
+        //$_SESSION['QC_userData'] = self::$data;
     }
 }

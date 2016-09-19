@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/common.php';
-
-$qc = new \CjsLogin\QQ\QC();
+$config = include __DIR__ . '/config/Qq.php';
+$qc = new \CjsLogin\QQ\QC($config);
 echo $qc->qq_callback();
 echo $qc->get_openid();
 //$ret = $qc->get_info();

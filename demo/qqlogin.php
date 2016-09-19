@@ -1,7 +1,8 @@
 <?php
 require __DIR__ . '/common.php';
 
-$qc = new \CjsLogin\QQ\QC();
-$qc->qq_login();
-
+$config = include __DIR__ . '/config/Qq.php';
+$qc = new \CjsLogin\QQ\QC($config);
+$login_url = $qc->qq_login();
+header("Location:$login_url");
 

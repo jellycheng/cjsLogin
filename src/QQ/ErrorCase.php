@@ -6,16 +6,16 @@ namespace CjsLogin\QQ;
  * @copyright © 2013, Tencent Corporation. All rights reserved.
  */
 
-require_once(CLASS_PATH."Recorder.class.php");
-
 /*
  * @brief ErrorCase类，封闭异常
  * */
 class ErrorCase{
 
     private $errorMsg;
+    private $recorder;
 
-    public function __construct(){
+    public function __construct($recorder){
+        $this->recorder = $recorder;
         $this->errorMsg = array(
             "20001" => "<h2>配置文件损坏或无法读取，请重新执行intall</h2>",
             "30001" => "<h2>The state does not match. You may be a victim of CSRF.</h2>",
@@ -30,11 +30,9 @@ class ErrorCase{
      * @param string $description 描述信息（可选）
      */
     public function showError($code, $description = '$'){
-        $recorder = new Recorder();
-        if(! $recorder->readInc("errorReport")){
-            die();//die quietly
+        if(! $this->recorder->readInc("errorReport")){
+            return '';
         }
-
 
         echo "<meta charset=\"UTF-8\">";
         if($description == "$"){

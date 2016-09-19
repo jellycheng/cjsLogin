@@ -9,11 +9,11 @@ namespace CjsLogin\QQ;
 /*
  * @brief url封装类，将常用的url请求操作封装在一起
  * */
-class URL{
-    private $error;
+class URL {
+
 
     public function __construct(){
-        $this->error = new ErrorCase();
+
     }
 
     /**
@@ -23,7 +23,7 @@ class URL{
      * @param array  $keysArr   参数列表数组
      * @return string           返回拼接的url
      */
-    public function combineURL($baseURL,$keysArr){
+    public function combineURL($baseURL, $keysArr){
         $combined = $baseURL."?";
         $valueArr = array();
 
@@ -53,11 +53,6 @@ class URL{
             curl_setopt($ch, CURLOPT_URL, $url);
             $response =  curl_exec($ch);
             curl_close($ch);
-        }
-
-        //-------请求为空
-        if(empty($response)){
-            $this->error->showError("50001");
         }
 
         return $response;

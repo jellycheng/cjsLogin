@@ -19,10 +19,10 @@ class Oauth{
     protected $error;
     
 
-    function __construct(){
-        $this->recorder = new Recorder();
+    function __construct($config=[]){
+        $this->recorder = Recorder::create()->setInc($config);
         $this->urlUtils = new URL();
-        $this->error = new ErrorCase();
+        $this->error = new ErrorCase($this->recorder);
     }
 
     public function qq_login(){
@@ -44,8 +44,8 @@ class Oauth{
         );
 
         $login_url =  $this->urlUtils->combineURL(self::GET_AUTH_CODE_URL, $keysArr);
-
-        header("Location:$login_url");
+        return $login_url;
+        //header("Location:$login_url");
     }
 
     public function qq_callback(){
@@ -62,7 +62,7 @@ class Oauth{
             "client_id" => $this->recorder->readInc("appid"),
             "redirect_uri" => urlencode($this->recorder->readInc("callback")),
             "client_secret" => $this->recorder->readInc("appkey"),
-            "code" => $_GET['code']
+            "code" => isset($_GET['code'])?$_GET['code']:'',
         );
 
         //------构造请求access_token的url
