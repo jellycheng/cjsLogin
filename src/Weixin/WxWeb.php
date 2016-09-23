@@ -36,6 +36,28 @@ class WxWeb extends WxBase {
     }
 
     /**
+     * 扫描二维码登录 -开放平台接口 https://open.weixin.qq.com/
+     * @param $redirect_uri
+     * @param string $scope
+     * @param null $state
+     * @param null $appid
+     * @return string
+     */
+    public function getQrconnect($redirect_uri, $scope='snsapi_login', $state=null, $appid=null) {
+        if(!$scope) {
+            $scope = 'snsapi_login';
+        }
+        if(!$state) {
+            $state = \CjsLogin\randStr(4);
+        }
+        $appid = $appid?:$this->getWxConfig('appid');
+        $url = sprintf('https://open.weixin.qq.com/connect/qrconnect?appid=%s&redirect_uri=%s&response_type=code&scope=%s&state=%s#wechat_redirect',
+            $appid, urlencode($redirect_uri),$scope,$state
+        );
+        return $url;
+    }
+
+    /**
      * 第二步: 通过code换取网页授权access_token
      * @param $code
      * @param null $appid
