@@ -4,7 +4,7 @@
  * 版本：3.3
  * 日期：2012-07-23
  */
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . 'common.php';
 $zfbConfig = include \CjsLogin\getZfbPath() . '/Config/alipay.config.php';
 $zfbConfig = array_merge($zfbConfig, include __DIR__ . '/zfb_login.config.php');
 

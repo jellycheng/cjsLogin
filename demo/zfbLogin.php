@@ -6,7 +6,7 @@
  * Date: 16/7/25
  * Time: 下午2:16
  */
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/common.php';
 
 $zfbConfig = include \CjsLogin\getZfbPath() . '/Config/alipay.config.php';
 $zfbConfig = array_merge($zfbConfig, include __DIR__ . '/zfb_login.config.php');
