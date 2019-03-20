@@ -4,10 +4,10 @@
  */
 
 return [
-        'wx38c2b93884cce8c6'=>[
-                'appid'=>'wx38c2b93884cce8c6',
-                'appsecret'=>'f81725e870a05601b4df4a7dc255f563',
-                'intro'=>'开发环境的小程序配置',
+        'wx94bcdb7377bb2c39'=>[
+                'appid'=>'wx94bcdb7377bb2c39',
+                'appsecret'=>'269b3b89e8ee9f98007c61882a4854e4',
+                'intro'=>'个人测试账号-开发环境的小程序配置',
         ],
 
 ];
