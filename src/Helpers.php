@@ -27,7 +27,6 @@ function randStr($length = 16){
  * @return string
  */
 function getZfbPath() {
-
     return __DIR__ . '/Zfb/';
 }
 
@@ -36,8 +35,7 @@ function getZfbPath() {
  * @return string
  */
 function getQQPath() {
-
-    return __DIR__ . '/Qq/';
+    return __DIR__ . '/QQ/';
 }
 
 
@@ -46,7 +44,14 @@ function getQQPath() {
  * @return string
  */
 function getWeixinPath() {
-
     return __DIR__ . '/Weixin/';
+}
+
+/**
+ * 小程序代码目录：微信、支付宝、百度、qq等小程序
+ * @return string
+ */
+function getXcxPath($subPath = '') {
+    return __DIR__ . '/Xcx/' . $subPath;
 }
 
