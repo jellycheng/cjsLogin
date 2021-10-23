@@ -4,17 +4,17 @@ namespace CjsLogin\Weixin;
 /**
  * 用于h5网站使用微信登录
  * 微信网页授权是通过OAuth2.0机制实现的
- * 1 第一步：用户同意授权，获取code(code是微信自动带到跳转地址上的code参数?code=&state=)
-    2 第二步：通过code换取网页授权access_token
-    3 第三步：刷新access_token（如果需要）
-    4 第四步：拉取用户信息(需scope为 snsapi_userinfo)
-    5 附：检验授权凭证（access_token）是否有效
+ * 第一步：用户同意授权，获取code(code是微信自动带到跳转地址上的code参数?code=&state=)
+ * 第二步：通过code换取网页授权access_token，仅适用于微信，不适用于企业微信
+ * 第三步：刷新access_token（如果需要），仅适用于微信，不适用于企业微信
+ * 第四步：拉取用户信息(需scope为 snsapi_userinfo)，仅适用于微信，不适用于企业微信
+ * 附：检验授权凭证（access_token）是否有效
  */
 class WxWeb extends WxBase {
 
 
     /**
-     * 第一步
+     * 第一步,适用于微信和企业微信
      * @param $appid
      * @param $redirect_uri
      * @param string $scope
