@@ -8,8 +8,17 @@ $res = \CjsLogin\QiyeWeixin\AccessToken::get($corpid, $corpsecret);
 var_export($res);
 echo PHP_EOL;
 
+// 获取用户信息
 $access_token = isset($res["access_token"])?$res["access_token"]:"";
-$code = "";
+$code = "QsO7gK4PijCa6haRb5ulUOLgrfInjAiLtcvqHNglPwo";
 $res2 = \CjsLogin\QiyeWeixin\UserInfo::getInfo($access_token, $code);
+/**
+array (
+    'UserId' => 'ChengJinSheng',
+    'DeviceId' => '',
+    'errcode' => 0,
+    'errmsg' => 'ok',
+)
+ */
 var_export($res2);
 echo PHP_EOL;
